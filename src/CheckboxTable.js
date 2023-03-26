@@ -7,6 +7,7 @@ function CheckboxTable() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [editedItem, setEditedItem] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     // Fetch data from API endpoint
@@ -28,6 +29,7 @@ function CheckboxTable() {
 
   const handleEdit = () => {
     // Open modal to edit selected item
+    console.log("Opening edit modal...");
     setShowModal(true);
     setEditedItem(selectedItems[0]);
   };
@@ -54,16 +56,41 @@ function CheckboxTable() {
     setEditedItem(null);
   };
 
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:3003/employee/${selectedItems[0].id}`)
+      .then(() => {
+        setItems(items.filter((item) => item.id !== selectedItems[0].id));
+        setSelectedItems([]);
+        setShowDeleteModal(false);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleDeleteConfirm = () => {
+    // Delete item and close modal
+  };
+
   const handleChange = (e) => {
     // Update edited item with form data
     setEditedItem({ ...editedItem, [e.target.name]: e.target.value });
   };
 
   return (
-    <div>
+    <section className="container">
+      <h1 className="heading">React Js CRUD Operation Data 😎</h1>
+      <h1 className="heading">
+        <Button onClick={handleEdit} disabled={selectedItems.length !== 1}>
+          Edit
+        </Button>
+        <Button onClick={handleDelete} disabled={selectedItems.length !== 1}>
+          Delete
+        </Button>
+      </h1>
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th></th>
             <th>id</th>
             <th>username</th>
             <th>email</th>
@@ -86,10 +113,19 @@ function CheckboxTable() {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="5">
+              <Button
+                onClick={handleDelete}
+                disabled={selectedItems.length === 0}
+              >
+                Delete
+              </Button>
+            </td>
+          </tr>
+        </tfoot>
       </Table>
-      <Button onClick={handleEdit} disabled={selectedItems.length !== 1}>
-        Edit
-      </Button>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -135,7 +171,7 @@ function CheckboxTable() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </section>
   );
 }
 
