@@ -1,17 +1,19 @@
 import Add from "./Add";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Nav from "./Nav";
+import Nave from "./Nav";
 import CheckboxTable from "./CheckboxTable";
+import Deletemultiplerow from "./Deletemultiplerow";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav />
+        <Nave />
         <>
           <Routes>
-            <Route path="/add" element={<Add />} />
-            <Route path="/edit" element={<CheckboxTable />} />
+            <Route path="/" element={<Add />} />
+            <Route path="/view" element={<CheckboxTable />} />
+            <Route path="/del" element={<Deletemultiplerow />} />
           </Routes>
         </>
       </div>

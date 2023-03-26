@@ -78,27 +78,44 @@ function CheckboxTable() {
     setEditedItem({ ...editedItem, [e.target.name]: e.target.value });
   };
 
-  const handleClearSelection = () => {
-    setSelectedItems([]);
+  const handleDeleteMultiple = () => {
+    // Delete multiple items
+    const itemIds = selectedItems.map((item) => item.id);
+    axios
+      .delete(`http://localhost:3003/employee/${itemIds.join(",")}`)
+      .then(() => {
+        setItems(items.filter((item) => !itemIds.includes(item.id)));
+        setSelectedItems([]);
+      })
+      .catch((error) => console.error(error));
   };
+  // const handleClearSelection = () => {
+  //   setSelectedItems([]);
+  // };
 
   return (
     <section className="container">
       <h1 className="heading">React Js CRUD Operation Data 😎</h1>
-      <h1 className="heading">
-        <Button onClick={handleEdit} disabled={selectedItems.length !== 1}>
+      <div className="button_wrapper">
+        <Button
+          className="btn1"
+          onClick={handleEdit}
+          disabled={selectedItems.length !== 1}
+        >
           Edit
         </Button>
-        <Button onClick={handleDelete} disabled={selectedItems.length === 0}>
+        <Button
+          className="btn-2 ml-5"
+          onClick={handleDelete}
+          disabled={selectedItems.length === 0}
+        >
           Delete
         </Button>
-      </h1>
-      <Table striped bordered hover>
+      </div>
+      <Table striped bordered hover className="section_wrapper">
         <thead>
           <tr>
-            <th>
-              <Button onClick={handleClearSelection}>Clear</Button>
-            </th>
+            <th></th>
             <th>id</th>
             <th>username</th>
             <th>email</th>
