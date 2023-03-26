@@ -57,23 +57,29 @@ function CheckboxTable() {
   };
 
   const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    // Delete selected items and close modal
+    const itemIds = selectedItems.map((item) => item.id);
     axios
-      .delete(`http://localhost:3003/employee/${selectedItems[0].id}`)
+      .delete(`http://localhost:3003/employee/${itemIds.join(",")}`)
       .then(() => {
-        setItems(items.filter((item) => item.id !== selectedItems[0].id));
+        setItems(items.filter((item) => !itemIds.includes(item.id)));
         setSelectedItems([]);
         setShowDeleteModal(false);
       })
       .catch((error) => console.error(error));
   };
 
-  const handleDeleteConfirm = () => {
-    // Delete item and close modal
-  };
-
   const handleChange = (e) => {
     // Update edited item with form data
     setEditedItem({ ...editedItem, [e.target.name]: e.target.value });
+  };
+
+  const handleClearSelection = () => {
+    setSelectedItems([]);
   };
 
   return (
@@ -83,14 +89,16 @@ function CheckboxTable() {
         <Button onClick={handleEdit} disabled={selectedItems.length !== 1}>
           Edit
         </Button>
-        <Button onClick={handleDelete} disabled={selectedItems.length !== 1}>
+        <Button onClick={handleDelete} disabled={selectedItems.length === 0}>
           Delete
         </Button>
       </h1>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th></th>
+            <th>
+              <Button onClick={handleClearSelection}>Clear</Button>
+            </th>
             <th>id</th>
             <th>username</th>
             <th>email</th>
@@ -101,9 +109,12 @@ function CheckboxTable() {
           {items.map((item) => (
             <tr key={item.id}>
               <td>
-                <input
+                <Form.Check
                   type="checkbox"
                   onChange={(e) => handleCheckboxChange(e, item)}
+                  checked={selectedItems.some(
+                    (selectedItem) => selectedItem.id === item.id
+                  )}
                 />
               </td>
               <td>{item.id}</td>
@@ -113,18 +124,6 @@ function CheckboxTable() {
             </tr>
           ))}
         </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan="5">
-              <Button
-                onClick={handleDelete}
-                disabled={selectedItems.length === 0}
-              >
-                Delete
-              </Button>
-            </td>
-          </tr>
-        </tfoot>
       </Table>
 
       <Modal show={showModal} onHide={handleClose}>
@@ -133,30 +132,35 @@ function CheckboxTable() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formUsername">
+            <Form.Group controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Enter username"
                 name="username"
-                value={editedItem ? editedItem.username : ""}
+                value={editedItem?.username}
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
+                placeholder="Enter email"
                 name="email"
-                value={editedItem ? editedItem.email : ""}
+                value={editedItem?.email}
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="formAddress">
+
+            <Form.Group controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Enter address"
                 name="address"
-                value={editedItem ? editedItem.address : ""}
+                value={editedItem?.address}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -168,6 +172,23 @@ function CheckboxTable() {
           </Button>
           <Button variant="primary" onClick={handleSave}>
             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Items</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete the selected items?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>
