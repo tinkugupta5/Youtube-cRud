@@ -1,10 +1,54 @@
 {
   "employee": [
     {
-      "username": "sssss",
-      "email": "cse153dddd21.sbit@gmail.com",
-      "address": "ddddddd",
+      "username": "ankit",
+      "email": "admin@gmail.com",
+      "address": "1068 N Macon St",
+      "id": 1
+    },
+    {
+      "username": "ravi",
+      "email": "cse15eeeee321.sbit@gmail.com",
+      "address": "78966",
       "id": 4
+    },
+    {
+      "username": "sachin",
+      "email": "sachin1@gmail.com",
+      "address": "1111111111111",
+      "id": 5
+    },
+    {
+      "username": "aakash",
+      "email": "aalash66@gmail.com",
+      "address": "aakashddddd",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "username": "dev",
+      "email": "dev655@gmail.com",
+      "address": "devendra b-7 dddd55"
+    },
+    {
+      "username": "11111111111",
+      "email": "1111111111@gmail.com",
+      "address": "1111111111111",
+      "id": 5
+    },
+    {
+      "username": "55555",
+      "email": "55555@gmail.com",
+      "address": "ddddd",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "username": "555555",
+      "email": "55555555@gmail.com",
+      "address": "ddddd55"
     }
+
+
   ]
 }

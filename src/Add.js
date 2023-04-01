@@ -11,13 +11,14 @@ function App() {
   const handlesubmit = (e) => {
     e.preventDefault();
     // console.log({ id, username, email, address });
-    const empdata = { username, email, address };
+    const empdata = { id, username, email, address };
     axios
       .post("http://localhost:3003/employee", empdata)
       .then((res) => {
         console.log("res", res);
+
         alert("saved successfully");
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         alert("some error is comiing ");
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <>
-      <section className="form-section">
+      <section className="form-section mt-3">
         <h1 className="heading">React Js CRUD Operation Data 😎</h1>
 
         <form autoComplete="false" onSubmit={handlesubmit}>
