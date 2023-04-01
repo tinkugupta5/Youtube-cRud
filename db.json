@@ -4,13 +4,31 @@
       "username": "ankit",
       "email": "admin@gmail.com",
       "address": "1068 N Macon St",
-      "id": 3
+      "id": 1
     },
     {
-      "username": "rrrrrrrrrrrrrrrrrrrrrrr",
+      "username": "ravi",
       "email": "cse15eeeee321.sbit@gmail.com",
-      "address": "7896666666666666",
+      "address": "78966",
       "id": 4
+    },
+    {
+      "username": "sachin",
+      "email": "sachin1@gmail.com",
+      "address": "1111111111111",
+      "id": 5
+    },
+    {
+      "username": "aakash",
+      "email": "aalash66@gmail.com",
+      "address": "aakashddddd",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "username": "dev",
+      "email": "dev655@gmail.com",
+      "address": "devendra b-7 dddd55"
     },
     {
       "username": "11111111111",
@@ -21,20 +39,16 @@
     {
       "username": "55555",
       "email": "55555@gmail.com",
-      "address": "tinkddddd",
+      "address": "ddddd",
       "id": 6
     },
     {
       "id": 7,
       "username": "555555",
       "email": "55555555@gmail.com",
-      "address": "tinkddddd55"
-    },
-    {
-      "username": "ttttttt",
-      "email": "tinku@gmail.com",
-      "address": "tttttttttttttttrrrrr",
-      "id": 8
+      "address": "ddddd55"
     }
+
+
   ]
 }

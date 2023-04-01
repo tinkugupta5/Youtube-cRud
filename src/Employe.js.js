@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Button, Modal, Form } from "react-bootstrap";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 function CheckboxTable() {
   const [items, setItems] = useState([]);
@@ -58,22 +56,22 @@ function CheckboxTable() {
     setEditedItem(null);
   };
 
-  // const handleDelete = () => {
-  //   setShowDeleteModal(true);
-  // };
+  const handleDelete = () => {
+    setShowDeleteModal(true);
+  };
 
-  // const handleDeleteConfirm = () => {
-  //   // Delete selected items and close modal
-  //   const itemIds = selectedItems.map((item) => item.id);
-  //   axios
-  //     .delete(`http://localhost:3003/employee/${itemIds.join(",")}`)
-  //     .then(() => {
-  //       setItems(items.filter((item) => !itemIds.includes(item.id)));
-  //       setSelectedItems([]);
-  //       setShowDeleteModal(false);
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
+  const handleDeleteConfirm = () => {
+    // Delete selected items and close modal
+    const itemIds = selectedItems.map((item) => item.id);
+    axios
+      .delete(`http://localhost:3003/employee/${itemIds.join(",")}`)
+      .then(() => {
+        setItems(items.filter((item) => !itemIds.includes(item.id)));
+        setSelectedItems([]);
+        setShowDeleteModal(false);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const handleChange = (e) => {
     // Update edited item with form data
@@ -106,13 +104,13 @@ function CheckboxTable() {
         >
           Edit
         </Button>
-        {/* <Button
+        <Button
           className="btn-2 ml-5"
           onClick={handleDelete}
           disabled={selectedItems.length === 0}
         >
           Delete
-        </Button> */}
+        </Button>
       </div>
       <Table striped bordered hover className="section_wrapper">
         <thead>
@@ -206,9 +204,9 @@ function CheckboxTable() {
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             Cancel
           </Button>
-          {/* <Button variant="danger" onClick={handleDeleteConfirm}>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
             Delete
-          </Button> */}
+          </Button>
         </Modal.Footer>
       </Modal>
     </section>

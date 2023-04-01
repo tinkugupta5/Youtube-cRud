@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 function App() {
   const [id, idchange] = useState("");
@@ -29,7 +27,7 @@ function App() {
 
   return (
     <>
-      <section className="form-section">
+      <section className="form-section mt-3">
         <h1 className="heading">React Js CRUD Operation Data 😎</h1>
 
         <form autoComplete="false" onSubmit={handlesubmit}>
