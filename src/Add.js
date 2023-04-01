@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 function App() {
   const [id, idchange] = useState("");
@@ -11,13 +13,14 @@ function App() {
   const handlesubmit = (e) => {
     e.preventDefault();
     // console.log({ id, username, email, address });
-    const empdata = { username, email, address };
+    const empdata = { id, username, email, address };
     axios
       .post("http://localhost:3003/employee", empdata)
       .then((res) => {
         console.log("res", res);
+
         alert("saved successfully");
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         alert("some error is comiing ");
