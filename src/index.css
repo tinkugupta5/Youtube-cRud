@@ -46,7 +46,7 @@ body {
 }
 
 .requiredLabel {
-  color: red;
+  color: rgb(236, 0, 0);
   font-weight: bold;
 }
 
@@ -97,4 +97,8 @@ body {
   border: none;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.text-white {
+  font-size: 16px;
 }

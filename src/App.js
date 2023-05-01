@@ -2,7 +2,8 @@ import Add from "./Add";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nave from "./Nav";
 import Employe from "./Employe.js";
-import Deletemultiplerow from "./Deletemultiplerow";
+// import BoxShadowCard from "./BoxShadowCard";
+// import BoxShadowCards from "./BoxShadowCard";
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Add />} />
             <Route path="/view" element={<Employe />} />
-            <Route path="/del" element={<Deletemultiplerow />} />
+            {/* <Route path="/box" element={<BoxShadowCards />} /> */}
           </Routes>
         </>
       </div>
